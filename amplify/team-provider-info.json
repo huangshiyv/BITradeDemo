@@ -1,0 +1,19 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "bitrade-dev-20190529233826-authRole",
+            "UnauthRoleArn": "arn:aws:iam::437668375098:role/bitrade-dev-20190529233826-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::437668375098:role/bitrade-dev-20190529233826-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "bitrade-dev-20190529233826-deployment",
+            "UnauthRoleName": "bitrade-dev-20190529233826-unauthRole",
+            "StackName": "bitrade-dev-20190529233826",
+            "StackId": "arn:aws:cloudformation:us-east-1:437668375098:stack/bitrade-dev-20190529233826/18389660-825a-11e9-914d-0ed7a3d4fec0"
+        },
+        "categories": {
+            "auth": {
+                "bitrade7854ccc8": {}
+            }
+        }
+    }
+}

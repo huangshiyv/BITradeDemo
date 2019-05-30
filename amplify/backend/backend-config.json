@@ -1,0 +1,8 @@
+{
+	"auth": {
+		"bitrade7854ccc8": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation"
+		}
+	}
+}

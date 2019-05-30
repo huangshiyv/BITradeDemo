@@ -1,0 +1,71 @@
+{
+    "identityPoolName": "bitrade7854ccc8_identitypool_7854ccc8",
+    "allowUnauthenticatedIdentities": false,
+    "lambdaLogPolicy": "bitrad_7854ccc8_lambda_log_policy",
+    "openIdLambdaRoleName": "bitrad_7854ccc8_openid_lambda_role",
+    "openIdRolePolicy": "bitrad_7854ccc8_openid_pass_role_policy",
+    "openIdLambdaIAMPolicy": "bitrad_7854ccc8_openid_lambda_iam_policy",
+    "openIdLogPolicy": "bitrad_7854ccc8_openid_lambda_log_policy",
+    "userPoolName": "bitrade7854ccc8_userpool_7854ccc8",
+    "autoVerifiedAttributes": [
+        "email"
+    ],
+    "mfaConfiguration": "OFF",
+    "mfaTypes": [
+        "SMS Text Message"
+    ],
+    "roleName": "bitrad7854ccc8_sns-role",
+    "roleExternalId": "bitrad7854ccc8_role_external_id",
+    "policyName": "bitrad7854ccc8-sns-policy",
+    "smsAuthenticationMessage": "Your authentication code is {####}",
+    "smsVerificationMessage": "Your verification code is {####}",
+    "emailVerificationSubject": "Your verification code",
+    "emailVerificationMessage": "Your verification code is {####}",
+    "defaultPasswordPolicy": false,
+    "passwordPolicyMinLength": 8,
+    "passwordPolicyCharacters": [],
+    "requiredAttributes": [
+        "email"
+    ],
+    "userpoolClientName": "bitrad7854ccc8_app_client",
+    "userpoolClientGenerateSecret": true,
+    "userpoolClientRefreshTokenValidity": 30,
+    "userpoolClientWriteAttributes": [
+        "email"
+    ],
+    "userpoolClientReadAttributes": [
+        "email"
+    ],
+    "mfaLambdaRole": "bitrad7854ccc8_totp_lambda_role",
+    "mfaLambdaLogPolicy": "bitrad7854ccc8_totp_lambda_log_policy",
+    "mfaPassRolePolicy": "bitrad7854ccc8_totp_pass_role_policy",
+    "mfaLambdaIAMPolicy": "bitrad7854ccc8_totp_lambda_iam_policy",
+    "userpoolClientLambdaRole": "bitrad7854ccc8_userpoolclient_lambda_role",
+    "userpoolClientLogPolicy": "bitrad7854ccc8_userpoolclient_lambda_log_policy",
+    "userpoolClientLambdaPolicy": "bitrad7854ccc8_userpoolclient_lambda_iam_policy",
+    "userpoolClientSetAttributes": false,
+    "resourceName": "bitrade7854ccc8",
+    "authSelections": "identityPoolAndUserPool",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    },
+    "unauthRoleArn": {
+        "Fn::GetAtt": [
+            "UnauthRole",
+            "Arn"
+        ]
+    },
+    "useDefault": "default",
+    "usernameAttributes": [
+        "email"
+    ]
+}
