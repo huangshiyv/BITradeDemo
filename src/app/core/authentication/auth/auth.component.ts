@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AmplifyService } from 'aws-amplify-angular';
 
 @Component({
   selector: 'app-auth',
@@ -9,7 +8,15 @@ import { AmplifyService } from 'aws-amplify-angular';
 
 export class AuthComponent implements OnInit {
 
-  constructor(private amplifyService: AmplifyService) {
+   signUpConfig = {
+    hideAllDefaults: true,
+    signUpFields: [
+      {label: 'username', type: 'string', key: 'username', required: true, custom: false, displayOrder: 1},
+      {label: 'Password', type: 'password',  key: 'password', required: true, custom: false, displayOrder: 2}
+    ]
+  };
+
+  constructor() {
    }
 
   ngOnInit() {

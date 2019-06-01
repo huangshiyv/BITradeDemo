@@ -12,6 +12,8 @@ import { SecureComponent } from './modules/home/pages/secure/secure.component';
 import { LoginComponent } from './core/authentication/login/login.component';
 import {MatButtonModule, MatInputModule,
   MatCheckboxModule, MatFormFieldModule, MatCardModule} from '@angular/material';
+import { ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,6 +24,7 @@ import {MatButtonModule, MatInputModule,
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,

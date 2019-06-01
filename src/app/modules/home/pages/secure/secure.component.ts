@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Auth } from 'aws-amplify';
 @Component({
   selector: 'app-secure',
   templateUrl: './secure.component.html',
@@ -12,4 +12,13 @@ export class SecureComponent implements OnInit {
   ngOnInit() {
   }
 
+  test() {
+    Auth.currentSession()
+      .then(
+        data => console.log(data)
+        )
+      .catch(err => console.log(err));
+
+
+  }
 }

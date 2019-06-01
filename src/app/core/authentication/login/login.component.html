@@ -1,11 +1,15 @@
-<div class="example-container">
+<mat-card class="example-card">
+      <mat-card-content>
+            <form class="example-container" (ngSubmit)="login()">
+                <mat-form-field>
+                    <input matInput placeholder="Email" name="email" [(ngModel)]="emailName" [formControl]="email" required />
+                    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+                  </mat-form-field>
 
-  <mat-form-field>
-    <input type="email" matInput placeholder="email" name="Email">
-  </mat-form-field>
-
-  <mat-form-field>
-    <input type="password" matInput placeholder="username" name="Username">
-  </mat-form-field>
-
-</div>
+                 <mat-form-field>
+                    <input type="password" matInput placeholder="Password" name="password" [(ngModel)]="password" />
+                  </mat-form-field>
+                  <button mat-raised-button color="primary">Login</button>
+        </form>
+      </mat-card-content>
+</mat-card>

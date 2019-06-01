@@ -17,15 +17,11 @@
     <!-- Navigation -->
     <div class="android-navigation-container">
       <nav class="android-navigation mdl-navigation">
-        <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Phones</a>
-        <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Tablets</a>
-        <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Wear</a>
-        <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">TV</a>
-        <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Auto</a>
-        <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">One</a>
-        <a class="mdl-navigation__link mdl-typography--text-uppercase" href="">Play</a>
-        <a class="mdl-navigation__link" routerLink="/">Home</a>
-        <a class="mdl-navigation__link mdl-typography--text-uppercase" routerLink="/login">Login</a>    
+        <a class="mdl-navigation__link mdl-typography--text-uppercase" routerLink="/">Home</a>
+        <a class="mdl-navigation__link mdl-typography--text-uppercase" routerLink="/secure">secure</a>
+        <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored  mdl-typography--text-uppercase" routerLink="/login">
+          Login
+        </a>
       </nav>
     </div>
     <span class="android-mobile-title mdl-layout-title">
@@ -39,6 +35,9 @@
       <li class="mdl-menu__item">4.4 KitKat</li>
       <li disabled class="mdl-menu__item">4.3 Jelly Bean</li>
       <li class="mdl-menu__item">Android History</li>
+      <li class="mdl-menu__item" (click) ="logOut()">
+          Logout
+      </li>
     </ul>
   </div>
 </div>
