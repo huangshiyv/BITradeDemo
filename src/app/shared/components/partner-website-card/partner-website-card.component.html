@@ -1,0 +1,10 @@
+<div *ngIf = "partnerCardInfo">
+  <a style="text-decoration:none;" href={{partnerCardInfo.websiteUrl}}>
+    <img src={{partnerCardInfo.imgUrl}}>
+    <div class="mdl-card__actions mdl-card--border"></div>
+    <div class="mdl-card__supporting-text">
+      <h2 class="mdl-card__title-text no-decoration">{{partnerCardInfo.shorDdescription}}</h2>
+      <div style="min-height:6em;">{{partnerCardInfo.longDescription}}</div>
+    </div>
+  </a>
+</div>

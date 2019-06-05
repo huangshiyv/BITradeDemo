@@ -13,6 +13,7 @@ import { LoginComponent } from './core/authentication/login/login.component';
 import {MatButtonModule, MatInputModule,
   MatCheckboxModule, MatFormFieldModule, MatCardModule} from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
+import { PartnerWebsiteCardComponent } from './shared/components/partner-website-card/partner-website-card.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     AuthComponent,
     SecureComponent,
     LoginComponent,
+    PartnerWebsiteCardComponent,
   ],
   imports: [
     BrowserModule,

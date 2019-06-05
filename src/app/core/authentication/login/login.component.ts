@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../services/authentication.service';
 import { Router } from '@angular/router';
 
@@ -9,42 +9,39 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  emailName: string;
-  password: string;
-  email = new FormControl('', [Validators.required, Validators.email]);
+  loginForm = this.fb.group({
+    emailName: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required]]
+  });
 
-   signUpConfig = {
+  signUpConfig = {
     hideAllDefaults: true,
     signUpFields: [
-      {label: 'username', type: 'string', key: 'username', required: true, custom: false, displayOrder: 1},
-      {label: 'Password', type: 'password',  key: 'password', required: true, custom: false, displayOrder: 2}
+      { label: 'username', type: 'string', key: 'username', required: true, custom: false, displayOrder: 1 },
+      { label: 'Password', type: 'password', key: 'password', required: true, custom: false, displayOrder: 2 }
     ]
   };
 
-  constructor(public authenticationService: AuthenticationService, private router: Router) { }
+  constructor(private fb: FormBuilder, private authenticationService: AuthenticationService, private router: Router) { }
 
   ngOnInit() {
   }
 
   getErrorMessage() {
-    return this.email.hasError('required') ? 'You must enter a value' :
-      this.email.hasError('email') ? 'Not a valid email' :
+    return this.loginForm.controls.emailName.hasError('required') ? 'You must enter a value' :
+      this.loginForm.controls.emailName.hasError('email') ? 'Not a valid email' :
         '';
   }
-  login() {
-    if (this.email.invalid) {
-      return;
-    }
-    this.authenticationService.login(this.emailName, this.password,
-      (cogUser) => {
-        if (cogUser != null) {
+  onSubmitLogin() {
+    this.authenticationService.login(this.loginForm.controls.emailName.value,
+      this.loginForm.controls.password.value).subscribe(user => {
+        if (user) {
+          this.authenticationService.isLoggedIn = true;
           this.router.navigate(['']);
-        }
-      },
-      (errorMsg) => {
-        alert(errorMsg);
-      }
-    );
+        }},
+        err => {
+          console.log(err);}
+      );
   }
 
 }
