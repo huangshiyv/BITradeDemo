@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Auth } from 'aws-amplify';
 import { PartnerCardModel } from 'src/app/shared/models/partnerCardModel';
+import { PartnerInfoService } from 'src/app/core/services/partner-info.service';
 @Component({
   selector: 'app-secure',
   templateUrl: './secure.component.html',
@@ -8,7 +9,7 @@ import { PartnerCardModel } from 'src/app/shared/models/partnerCardModel';
 })
 export class SecureComponent implements OnInit {
 
-  constructor() { }
+  constructor(private partnerInfoService: PartnerInfoService) { }
   test1: PartnerCardModel = {
     id: 1,
     name: 'test',
@@ -23,6 +24,10 @@ export class SecureComponent implements OnInit {
   };
   ngOnInit() {
 
+  }
+
+  test2() {
+    this.partnerInfoService.get();
   }
 
   test() {
