@@ -11,7 +11,7 @@ export class PartnerInfoService {
     let apiName = 'MyAPIGatewayAPI';
     let path = '/partners';
     let myInit = { // OPTIONAL
-      headers: { Authorization: `Bearer ${(await Auth.currentSession()).getIdToken().getJwtToken()}` },
+      headers: {},
       response: false // OPTIONAL (return the entire Axios response object instead of only response.data)
     };
     API.get(apiName, path, myInit).then(response => {
