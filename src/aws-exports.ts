@@ -34,7 +34,7 @@ const awsmobile = {
     endpoints: [
       {
         name: 'MyAPIGatewayAPI',
-        endpoint: ' https://13gnjltmx3.execute-api.us-east-1.amazonaws.com/prod',
+        endpoint: 'https://wp67snvjm5.execute-api.us-east-1.amazonaws.com/prod',
         custom_header: async () => {
           return { Authorization: `Bearer ${(await Auth.currentSession()).getIdToken().getJwtToken()}`};
           // Alternatively, with Cognito User Pools use this:

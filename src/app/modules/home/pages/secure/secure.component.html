@@ -4,61 +4,10 @@
 
 <div class="page-content">
 <div class="mdl-grid">
-    <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col ">
-  <app-partner-website-card [partnerCardInfo] = "test1"></app-partner-website-card>
-</div>
-<div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col ">
-  <app-partner-website-card [partnerCardInfo] = "test1"></app-partner-website-card>
-</div>
-  <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col ">
-    <a style="text-decoration:none;" href="/blog/projects/2019/01/20/photo_negative_scanner_mirrorless/">
-      <div class="mdl-card__title "
-        style="background: url('../../../../../assets/images/blog_thumb/aarhus_taxa_logo.jpg') center/cover;"></div>
-      <div class="mdl-card__actions mdl-card--border"></div>
-      <div class="mdl-card__supporting-text">
-        <h2 class="mdl-card__title-text no-decoration">Digitize negatives using a DSLR or mirrorless camera</h2>
-        <div style="min-height:6em;">We've shot a new video, showing how you can get even better results from Photo
-          Negative Scanner by using a dedicated digital camera.</div>
-      </div>
-    </a>
-  </div>
 
-  <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col ">
-    <a style="text-decoration:none;" href="/blog/projects/2019/01/20/photo_negative_scanner_mirrorless/">
-      <div class="mdl-card__title "
-        style="background: url('../../../../../assets/images/blog_thumb/aarhus_taxa_logo.jpg') center/cover;"></div>
-      <div class="mdl-card__actions mdl-card--border"></div>
-      <div class="mdl-card__supporting-text">
-        <h2 class="mdl-card__title-text no-decoration">Digitize negatives using a DSLR or mirrorless camera</h2>
-        <div style="min-height:6em;">We've shot a new video, showing how you can get even better results from Photo
-          Negative Scanner by using a dedicated digital camera.</div>
-        <div>
-          <div class="authorimage"
-            style="background-image: url(http://www.gravatar.com/avatar/471c9a019fe02a6baa1abfde248b3ba1?s=40)"></div>
-          <div class="author">20 Jan 2019<br>
-            Tobias Alrøe</div>
-        </div>
+     <div *ngFor="let partner of partnerCardDatas"  class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col ">
+        <app-partner-website-card [partnerCardInfo] = "partner"></app-partner-website-card>
       </div>
-    </a>
-  </div>
 
-  <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col ">
-    <a style="text-decoration:none;" href="/blog/projects/2019/01/20/photo_negative_scanner_mirrorless/">
-      <div class="mdl-card__title "
-        style="background: url('../../../../../assets/images/blog_thumb/aarhus_taxa_logo.jpg') center/cover;"></div>
-      <div class="mdl-card__actions mdl-card--border"></div>
-      <div class="mdl-card__supporting-text">
-        <h2 class="mdl-card__title-text no-decoration">Digitize negatives using a DSLR or mirrorless camera</h2>
-        <div style="min-height:6em;">We've shot a new video, showing how you can get even better results from Photo
-          Negative Scanner by using a dedicated digital camera.</div>
-        <div>
-          <div class="authorimage"
-            style="background-image: url(http://www.gravatar.com/avatar/471c9a019fe02a6baa1abfde248b3ba1?s=40)"></div>
-          <div class="author">20 Jan 2019<br>
-            Tobias Alrøe</div>
-        </div>
-      </div>
-    </a>
-  </div>
 </div>
 </div>

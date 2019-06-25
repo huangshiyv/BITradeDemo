@@ -14,7 +14,8 @@ import {MatButtonModule, MatInputModule,
   MatCheckboxModule, MatFormFieldModule, MatCardModule} from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PartnerWebsiteCardComponent } from './shared/components/partner-website-card/partner-website-card.component';
-
+import { HttpClientModule } from '@angular/common/http';
+import { BuyItemNormalWindowComponent } from './shared/components/buy-item-normal-window/buy-item-normal-window.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +24,7 @@ import { PartnerWebsiteCardComponent } from './shared/components/partner-website
     SecureComponent,
     LoginComponent,
     PartnerWebsiteCardComponent,
+    BuyItemNormalWindowComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +38,8 @@ import { PartnerWebsiteCardComponent } from './shared/components/partner-website
     MatCheckboxModule,
     MatCardModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    HttpClientModule
   ],
   providers: [AmplifyService],
   bootstrap: [AppComponent]

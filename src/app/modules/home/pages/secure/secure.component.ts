@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Auth } from 'aws-amplify';
 import { PartnerCardModel } from 'src/app/shared/models/partnerCardModel';
 import { PartnerInfoService } from 'src/app/core/services/partner-info.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { catchError, map, tap } from 'rxjs/operators';
+import { of } from 'rxjs';
 @Component({
   selector: 'app-secure',
   templateUrl: './secure.component.html',
@@ -9,25 +12,50 @@ import { PartnerInfoService } from 'src/app/core/services/partner-info.service';
 })
 export class SecureComponent implements OnInit {
 
-  constructor(private partnerInfoService: PartnerInfoService) { }
-  test1: PartnerCardModel = {
-    id: 1,
-    name: 'test',
-    longDescription: 'Weve shot a new video, showing how you can get \
-    even better results from Photo Negative Scanner by using a dedicated digital camera.',
-    shorDdescription: 'Digitize negatives using a DSLR or mirrorless camera',
-    imgUrl: '../../../../../assets/images/blog_thumb/aarhus_taxa_logo.jpg',
-    websiteUrl: 'www.google.fr',
-    internalWebSiteUrl: 'string',
-    created: null,
-    parameters: []
-  };
-  ngOnInit() {
+  partnerCardDatas: PartnerCardModel[];
+  constructor(private partnerInfoService: PartnerInfoService, private http: HttpClient) { }
 
+  ngOnInit() {
+    this.partnerInfoService.get().subscribe(
+      parternData => {
+        this.partnerCardDatas = parternData;
+        console.log(this.partnerCardDatas);
+      }
+    );
   }
 
   test2() {
-    this.partnerInfoService.get();
+    let req = {
+      method: 'get',
+      url: 'https://www.sephora.fr/p/moroccan-spice---palette-de-fards-a-paupieres-P3397005.html'
+    };
+    var url = "http://www.whateverorigin.org/get?url=" + encodeURIComponent("https://www.sephora.fr/p/moroccan-spice---palette-de-fards-a-paupieres-P3397005.html");
+    const headers = new HttpHeaders().append("Access-Control-Allow-Origin", "http://localhost:4200")
+    // .append('Access-Control-Allow-Headers', 'Content-Type').
+     .append('Access-Control-Allow-Methods', 'post');
+    const options = { headers };
+
+    const headerDict = {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': 'Content-Type',
+    }
+    const requestOptions = {
+      headers: new HttpHeaders(headerDict),
+    };
+
+    this.http.request('get', url, requestOptions).pipe(
+      catchError(
+        err => {
+          console.log(err);
+          return of();
+        }
+      )
+    ).subscribe(
+      data => {
+        console.log(data);
+      }
+    );
+
   }
 
   test() {
@@ -36,7 +64,5 @@ export class SecureComponent implements OnInit {
         data => console.log(data)
       )
       .catch(err => console.log(err));
-
-
   }
 }

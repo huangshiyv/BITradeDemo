@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import Amplify, { API, Auth } from 'aws-amplify';
+import { Observable, of, from } from 'rxjs';
+import { PartnerCardModel } from 'src/app/shared/models/partnerCardModel';
+import { catchError } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
@@ -7,17 +10,19 @@ export class PartnerInfoService {
 
   constructor() { }
 
-  async get() {
-    let apiName = 'MyAPIGatewayAPI';
-    let path = '/partners';
-    let myInit = { // OPTIONAL
+  get(): Observable<PartnerCardModel[]> {
+    const apiName = 'MyAPIGatewayAPI';
+    const path = '/partners';
+    const myInit = { // OPTIONAL
       headers: {},
       response: false // OPTIONAL (return the entire Axios response object instead of only response.data)
     };
-    API.get(apiName, path, myInit).then(response => {
-        console.log(response);
-    }).catch(error => {
-        console.log(error.response);
-    });
+    return from(API.get(apiName, path, myInit))
+    .pipe(
+      catchError(err => {
+        console.log(err.response);
+        return of();
+      })
+    );
   }
 }
