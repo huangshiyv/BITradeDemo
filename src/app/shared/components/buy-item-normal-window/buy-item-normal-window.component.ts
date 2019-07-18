@@ -1,5 +1,9 @@
+import { map, concatMap, mergeMap } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ProductInfoService } from 'src/app/core/services/product-info.service';
+import { ProductDetailModel } from '../../models/ProductDetailModel';
+import { CartService } from 'src/app/core/services/cart.service';
 
 @Component({
   selector: 'app-buy-item-normal-window',
@@ -8,12 +12,27 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class BuyItemNormalWindowComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private productInfoService: ProductInfoService<ProductDetailModel>,
+              private cartService: CartService) { }
+  item: ProductDetailModel;
   id: string;
   ngOnInit() {
-    this.route.paramMap.subscribe(params => {
+    this.route.paramMap.pipe(map(params => {
       this.id = params.get('id');
-    });
+      return params.get('id');
+    }),
+      mergeMap(id => this.productInfoService.getProductById(id))
+    ).subscribe(
+      data => {
+        this.item = data;
+        this.item.quantity = 1;
+        console.log(data);
+      }
+    );
+  }
+
+  addToCart(product) {
+    this.cartService.addToCart(product);
   }
 
 }

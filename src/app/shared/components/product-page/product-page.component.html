@@ -1,0 +1,7 @@
+<div class="row">
+  <div *ngFor="let product of pageOfItems" class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
+    <app-product-grid-item [productDetailModel]="product"></app-product-grid-item>
+  </div>
+</div>
+
+<app-paging-item class="wn__pagination"></app-paging-item>
