@@ -11,11 +11,12 @@ import { CartComponent } from './modules/home/pages/cart/cart.component';
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'auth', component: AuthComponent, pathMatch: 'full' },
-  { path: 'shop/page/:id', component: ProductGridComponent,  pathMatch: 'full' },
-  { path: 'shop', component: ProductGridComponent,  pathMatch: 'full' },
+  { path: 'shop/:shopName/category/:category/id/:id', component: BuyItemNormalWindowComponent, pathMatch: 'full' },
+  { path: 'shop/:shopName/category/:category', component: ProductGridComponent, pathMatch: 'full' },
+  { path: 'shop/:shopName/id/:id', component: BuyItemNormalWindowComponent, pathMatch: 'full' },
+  { path: 'shop/:shopName', component: ProductGridComponent,  pathMatch: 'full' },
   { path: 'secure', component: SecureComponent,   canActivate: [AuthGuard], pathMatch: 'full' },
   { path: 'login', component: LoginComponent, pathMatch: 'full' },
-  { path: 'sephora/id/:id', component: BuyItemNormalWindowComponent, pathMatch: 'full' },
   { path: 'cart', component: CartComponent },
   ];
 

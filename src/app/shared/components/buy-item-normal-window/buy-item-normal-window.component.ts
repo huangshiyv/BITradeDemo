@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductInfoService } from 'src/app/core/services/product-info.service';
 import { ProductDetailModel } from '../../models/ProductDetailModel';
 import { CartService } from 'src/app/core/services/cart.service';
-
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-buy-item-normal-window',
   templateUrl: './buy-item-normal-window.component.html',
@@ -13,7 +13,7 @@ import { CartService } from 'src/app/core/services/cart.service';
 export class BuyItemNormalWindowComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private productInfoService: ProductInfoService<ProductDetailModel>,
-              private cartService: CartService) { }
+              private cartService: CartService, private location: Location) { }
   item: ProductDetailModel;
   id: string;
   ngOnInit() {
@@ -29,6 +29,9 @@ export class BuyItemNormalWindowComponent implements OnInit {
         console.log(data);
       }
     );
+  }
+  goBack(): void {
+    this.location.back();
   }
 
   addToCart(product) {

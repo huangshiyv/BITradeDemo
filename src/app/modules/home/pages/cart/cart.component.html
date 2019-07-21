@@ -34,15 +34,14 @@
                               </tr>
                           </thead>
                           <tbody>
-                              <tr *ngFor = "let item of this.cartService.getItems()">
+                              <tr *ngFor = "let item of this.cartService.getItems().items">
                                   <td class="product-thumbnail"><a [href]="item.imgs.galleryImgsThumb[0]"><img [src]="item.imgs.galleryImgsThumb[0]" alt="product img"></a></td>
                                   <td class="product-name"><a [href]="item.imgs.galleryImgsThumb[0]">{{item.productName}}</a></td>
                                   <td class="product-price"><span class="amount">€ {{item.price}}</span></td>
-                                  <td class="product-quantity"><input type="number"  [(ngModel)]='item.quantity' name={{item.Id}}></td>
+                                  <td class="product-quantity"><input type="number"  [(ngModel)]='item.quantity' name={{item.Id}} (change)="OnChange($event)"></td>
                                   <td class="product-subtotal">€ {{item.quantity * item.price}}</td>
                                   <td class="product-remove"><a (click)= "delete(item.Id)">X</a></td>
                               </tr>
-
                           </tbody>
                       </table>
                   </div>
@@ -64,13 +63,14 @@
                           <li>Sub Total</li>
                       </ul>
                       <ul class="cart__total__tk">
-                          <li>{{this.cartService.total}}</li>
-                          <li>$70</li>
+
+                          <li>€ {{this.cartService.getItems().cartTotal}}</li>
+                          <li>{{tt}}</li>
                       </ul>
                   </div>
                   <div class="cart__total__amount">
                       <span>Grand Total</span>
-                      <span>$140</span>
+                      <span>€ {{this.cartService.getItems().cartTotal}}</span>
                   </div>
               </div>
           </div>

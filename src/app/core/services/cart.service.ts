@@ -1,47 +1,55 @@
 import { Injectable } from '@angular/core';
-import { ProductDetailModel } from 'src/app/shared/models/ProductDetailModel';
-import { Subject, Observable } from 'rxjs';
+import { CartModel } from 'src/app/shared/models/CartModel';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  private items: ProductDetailModel[] = [];
+  private item: CartModel;
   private kEY = 'cartItems';
-  total;
   constructor() {
     if (window.localStorage && localStorage.getItem(this.kEY) !== null) {
-      this.items = JSON.parse(localStorage.getItem(this.kEY));
+      this.item = JSON.parse(localStorage.getItem(this.kEY));
       this.getTotalPrice();
+    } else {
+      this.item = new CartModel([], 0);
     }
   }
 
+
   addToCart(product) {
-    this.items.push(product);
-    this.saveToLocalStorage();
+    this.item.items.push(product);
+    this.caculateTotal();
   }
 
   deleteCartitem(id) {
-    this.items = this.items.filter(item => item.Id !== id);
-    this.saveToLocalStorage();
+    this.item.items = this.item.items.filter(item => item.Id !== id);
+    this.caculateTotal();
   }
 
   getItems() {
-    return this.items;
+    return this.item;
   }
 
   clearCart() {
-    this.items = [];
+    this.item = new CartModel([], 0);
     this.clearLocalStorage();
-    return this.items;
+    return this.item;
   }
 
   getTotalPrice() {
-    this.total = this.items.reduce((a, b) => a + b.price * b.quantity, 0);
+    return this.item.items.reduce((a, b) => a + b.price * b.quantity, 0);
   }
 
-  private saveToLocalStorage() {
-    localStorage.setItem(this.kEY, JSON.stringify(this.items));
+  caculateTotal() {
+    this.item.cartTotal = this.getTotalPrice();
+    this.saveToLocalStorage();
+
+  }
+
+  saveToLocalStorage() {
+    localStorage.setItem(this.kEY, JSON.stringify(this.item));
   }
 
   private clearLocalStorage() {

@@ -16,14 +16,19 @@ export class ProductDetailModel {
   quantity: number;
 }
 
-class Description {
+export class Description {
   desc: string;
   integrents: string;
   langCode: string;
 }
 
-class Imgs {
+export class Imgs {
   galleryImgs: Array<string>;
   galleryImgsThumb: Array<string>;
   primaryImg: string;
+}
+
+export class ProductListItemsModel {
+  items: Array<ProductDetailModel>;
+  length: number;
 }

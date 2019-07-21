@@ -6,28 +6,30 @@ import { catchError, map, tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ProductInfoService<I> {
-  private items: Subject<I[]>;
+  private items: Subject<I>;
   private url = 'http://localhost:53994/api/WebSiteData';
+  fromItem: number;
+  toItem: number;
+  totalItems: number;
   constructor(private http: HttpClient) {
-      this.items = new Subject<I[]>();
+      this.items = new Subject<I>();
   }
 
-  public getItems(): Observable<I[]> {
+  public getItems(): Observable<I> {
     return this.items.asObservable();
   }
 
-  public setItems(newItems: I[]) {
+  public setItems(newItems: I) {
     this.items.next(newItems);
   }
 
-  getProductByID(searchP: string, pageSize: number, page: number): Observable<I[]> {
+  getProductByID(searchP: string, pageSize: number, page: number): Observable<I> {
     const fetchUrl = `${this.url}?jsonQuery=${searchP}&pageSize=${pageSize}&page=${page}`;
-    return this.http.get<I[]>(fetchUrl).pipe(
+    return this.http.get<I>(fetchUrl).pipe(
       tap(_ => console.log(`found heroes matching `)),
-      catchError(this.handleError<I[]>('searchHeroes', null))
+      catchError(this.handleError<I>('searchHeroes', null))
     );
   }
-
 
   getProductById(searchP: string): Observable<I> {
     const fetchUrl = `${this.url}/${searchP}`;

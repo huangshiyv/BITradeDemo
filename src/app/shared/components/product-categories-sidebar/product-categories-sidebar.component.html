@@ -1,0 +1,6 @@
+<aside class="wedget__categories poroduct--cat">
+  <h3 class="wedget__title">Product Categories</h3>
+  <ul *ngFor= "let item of this.cartegorySidebarList$ | async">
+    <li><a routerLink = "category/{{item.category}}">{{item.category}} <span>({{item.count}})</span></a></li>
+  </ul>
+</aside>

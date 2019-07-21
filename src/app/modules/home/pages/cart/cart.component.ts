@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, Input } from '@angular/core';
 import { CartService } from 'src/app/core/services/cart.service';
 
 @Component({
@@ -8,6 +8,7 @@ import { CartService } from 'src/app/core/services/cart.service';
 })
 export class CartComponent implements OnInit {
 
+  @Input() tt = 1;
   constructor(public cartService: CartService) {
    }
 
@@ -19,6 +20,10 @@ export class CartComponent implements OnInit {
   }
 
   test() {
-    this.cartService.total += 100;
+    this.tt +=1;
   }
+
+  OnChange(event,id) {
+    this.cartService.caculateTotal();
+   }
 }

@@ -21,6 +21,9 @@ import { ProductGridItemComponent } from './shared/components/product-grid-item/
 import { ProductPageComponent } from './shared/components/product-page/product-page.component';
 import { PagingItemComponent } from './shared/components/paging-item/paging-item.component';
 import { CartComponent } from './modules/home/pages/cart/cart.component';
+import { ProductCategoriesSidebarComponent } from './shared/components/product-categories-sidebar/product-categories-sidebar.component';
+import { ProductGridTitlebarComponent } from './shared/components/product-grid-titlebar/product-grid-titlebar.component';
+import { CartSubwindowComponent } from './shared/components/cart-subwindow/cart-subwindow.component';
 
 
 @NgModule({
@@ -37,6 +40,9 @@ import { CartComponent } from './modules/home/pages/cart/cart.component';
     ProductPageComponent,
     PagingItemComponent,
     CartComponent,
+    ProductCategoriesSidebarComponent,
+    ProductGridTitlebarComponent,
+    CartSubwindowComponent,
   ],
   imports: [
     BrowserModule,

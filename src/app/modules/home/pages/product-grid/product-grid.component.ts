@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductInfoService } from 'src/app/core/services/product-info.service';
-import { ProductDetailModel } from 'src/app/shared/models/ProductDetailModel';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-product-grid',
@@ -8,9 +7,15 @@ import { ProductDetailModel } from 'src/app/shared/models/ProductDetailModel';
   styleUrls: ['./product-grid.component.css']
 })
 export class ProductGridComponent implements OnInit {
-  constructor() { }
+  constructor(private location: Location) {
+   }
   ngOnInit() {
 
   }
+
+   goBack(): void {
+    this.location.back();
+  }
+
 
 }
