@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CartModel } from 'src/app/shared/models/CartModel';
+import { ProductDetailModel } from 'src/app/shared/models/ProductDetailModel';
 
 
 @Injectable({
@@ -18,8 +19,14 @@ export class CartService {
   }
 
 
-  addToCart(product) {
-    this.item.items.push(product);
+  addToCart(product: ProductDetailModel) {
+    const item = this.item.items.filter(x => x.Id === product.Id)[0];
+    if (item) {
+      item.quantity += product.quantity;
+    } else {
+      this.item.items.push(product);
+    }
+
     this.caculateTotal();
   }
 

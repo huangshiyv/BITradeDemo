@@ -25,6 +25,50 @@ import { ProductCategoriesSidebarComponent } from './shared/components/product-c
 import { ProductGridTitlebarComponent } from './shared/components/product-grid-titlebar/product-grid-titlebar.component';
 import { CartSubwindowComponent } from './shared/components/cart-subwindow/cart-subwindow.component';
 
+import { AngularFireModule } from '@angular/fire';
+import { environment } from '../environments/environment';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import {FirebaseUIModule, firebase, firebaseui} from 'firebaseui-angular';
+import { FirebaseuiLoginComponent } from './core/authentication/firebaseui-login/firebaseui-login.component';
+import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
+import { AddressManagerComponent } from './modules/home/pages/address-manager/address-manager.component';
+import { AddAddressPageComponent } from './modules/home/pages/add-address-page/add-address-page.component';
+
+const firebaseUiAuthConfig: firebaseui.auth.Config = {
+  signInFlow: 'popup',
+  signInSuccessUrl:  'http://click13.com', //'http://localhost:4200',
+  signInOptions: [
+    {
+      requireDisplayName: false,
+      provider: firebase.auth.EmailAuthProvider.PROVIDER_ID
+    },
+    {
+      provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+      scopes: [
+        'https://www.googleapis.com/auth/classroom.profile.emails'
+      ]
+    },
+    {
+      scopes: [
+        'public_profile',
+        'email',
+        'user_likes',
+        'user_friends'
+      ],
+      customParameters: {
+        'auth_type': 'reauthenticate'
+      },
+      provider: firebase.auth.FacebookAuthProvider.PROVIDER_ID
+    },
+
+    firebase.auth.PhoneAuthProvider.PROVIDER_ID
+  ],
+  tosUrl: 'http://baidu.com',
+  privacyPolicyUrl: '<your-privacyPolicyUrl-link>',
+  credentialHelper: firebaseui.auth.CredentialHelper.NONE
+};
 
 @NgModule({
   declarations: [
@@ -43,9 +87,13 @@ import { CartSubwindowComponent } from './shared/components/cart-subwindow/cart-
     ProductCategoriesSidebarComponent,
     ProductGridTitlebarComponent,
     CartSubwindowComponent,
+    FirebaseuiLoginComponent,
+    AddressManagerComponent,
+    AddAddressPageComponent,
   ],
   imports: [
     BrowserModule,
+    AngularFireModule.initializeApp(environment.firebase, 'click13.com'),
     ReactiveFormsModule,
     FormsModule,
     AppRoutingModule,
@@ -57,9 +105,13 @@ import { CartSubwindowComponent } from './shared/components/cart-subwindow/cart-
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularFirestoreModule, // imports firebase/firestore, only needed for database features
+    AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
+    AngularFireStorageModule,
+    FirebaseUIModule.forRoot(firebaseUiAuthConfig)
   ],
-  providers: [AmplifyService],
+  providers: [AmplifyService, AngularFireAuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

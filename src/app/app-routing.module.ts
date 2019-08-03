@@ -8,7 +8,18 @@ import { AuthGuard } from './core/guard/auth.guard';
 import { BuyItemNormalWindowComponent } from './shared/components/buy-item-normal-window/buy-item-normal-window.component';
 import { ProductGridComponent } from './modules/home/pages/product-grid/product-grid.component';
 import { CartComponent } from './modules/home/pages/cart/cart.component';
+import { FirebaseuiLoginComponent } from './core/authentication/firebaseui-login/firebaseui-login.component';
+
+import { AngularFireAuthGuard, hasCustomClaim, redirectUnauthorizedTo, redirectLoggedInTo } from '@angular/fire/auth-guard';
+import { canActivate } from '@angular/fire/auth-guard';
+import { AddressManagerComponent } from './modules/home/pages/address-manager/address-manager.component';
+import { AddAddressPageComponent } from './modules/home/pages/add-address-page/add-address-page.component';
+const redirectUnauthorizedToLogin = redirectUnauthorizedTo(['login']);
+
 const routes: Routes = [
+
+  { path: 'user/address/add', component: AddAddressPageComponent, ...canActivate(redirectUnauthorizedToLogin) },
+  { path: 'user/address', component: AddressManagerComponent, ...canActivate(redirectUnauthorizedToLogin) },
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'auth', component: AuthComponent, pathMatch: 'full' },
   { path: 'shop/:shopName/category/:category/id/:id', component: BuyItemNormalWindowComponent, pathMatch: 'full' },
@@ -16,8 +27,8 @@ const routes: Routes = [
   { path: 'shop/:shopName/id/:id', component: BuyItemNormalWindowComponent, pathMatch: 'full' },
   { path: 'shop/:shopName', component: ProductGridComponent,  pathMatch: 'full' },
   { path: 'secure', component: SecureComponent,   canActivate: [AuthGuard], pathMatch: 'full' },
-  { path: 'login', component: LoginComponent, pathMatch: 'full' },
-  { path: 'cart', component: CartComponent },
+  { path: 'login', component: FirebaseuiLoginComponent, pathMatch: 'full' },
+  { path: 'cart', component: CartComponent, ...canActivate(redirectUnauthorizedToLogin) }
   ];
 
 @NgModule({
