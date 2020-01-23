@@ -11,8 +11,8 @@ export class SidebarService {
   cartegorySidebarList: CategoriesSideBarModel[];
   constructor(private http: HttpClient) {
   }
- // private url = 'http://localhost:53994/api/WebSiteData/Category';
-  private url = 'http://tiwebsiteapi.azurewebsites.net/api/WebSiteData/Category';
+//  private url = 'http://localhost:53994/api/WebSiteData/Category';
+  private url = 'https://tiwebsiteapi.azurewebsites.net/api/WebSiteData/Category';
   getCategorySideBarList(websiteName = '') {
     const fetchUrl = `${this.url}?name=${websiteName}`;
     return this.http.get<CategoriesSideBarModel[]>(fetchUrl).pipe(

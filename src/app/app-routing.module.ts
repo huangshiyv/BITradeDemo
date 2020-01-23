@@ -14,12 +14,14 @@ import { AngularFireAuthGuard, hasCustomClaim, redirectUnauthorizedTo, redirectL
 import { canActivate } from '@angular/fire/auth-guard';
 import { AddressManagerComponent } from './modules/home/pages/address-manager/address-manager.component';
 import { AddAddressPageComponent } from './modules/home/pages/add-address-page/add-address-page.component';
-const redirectUnauthorizedToLogin = redirectUnauthorizedTo(['login']);
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 
 const routes: Routes = [
 
-  { path: 'user/address/add', component: AddAddressPageComponent, ...canActivate(redirectUnauthorizedToLogin) },
-  { path: 'user/address', component: AddressManagerComponent, ...canActivate(redirectUnauthorizedToLogin) },
+  // tslint:disable-next-line:max-line-length
+  { path: 'user/address/add', component: AddAddressPageComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin } },
+  // tslint:disable-next-line:max-line-length
+  { path: 'user/address', component: AddressManagerComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin } },
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'auth', component: AuthComponent, pathMatch: 'full' },
   { path: 'shop/:shopName/category/:category/id/:id', component: BuyItemNormalWindowComponent, pathMatch: 'full' },
@@ -28,7 +30,7 @@ const routes: Routes = [
   { path: 'shop/:shopName', component: ProductGridComponent,  pathMatch: 'full' },
   { path: 'secure', component: SecureComponent,   canActivate: [AuthGuard], pathMatch: 'full' },
   { path: 'login', component: FirebaseuiLoginComponent, pathMatch: 'full' },
-  { path: 'cart', component: CartComponent, ...canActivate(redirectUnauthorizedToLogin) }
+  { path: 'cart', component: CartComponent, canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redirectUnauthorizedToLogin } }
   ];
 
 @NgModule({

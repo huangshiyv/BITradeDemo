@@ -38,7 +38,7 @@ import { AddAddressPageComponent } from './modules/home/pages/add-address-page/a
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'popup',
-  signInSuccessUrl:  'http://click13.com', //'http://localhost:4200',
+  signInSuccessUrl:  'http://localhost:4200', //'http://click13.com',
   signInOptions: [
     {
       requireDisplayName: false,

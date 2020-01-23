@@ -1,3 +1,5 @@
+<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
+
 <div class="container customerMargin">
   <section class="wn__checkout__area section-padding--lg bg__white">
     <div class="container">
@@ -5,18 +7,20 @@
       <div class="row">
         <div class="col-lg-12 col-12">
           <div class="customer_details">
-            <h3>add a new address</h3>
+            <h3>Add a new address</h3>
             <p></p>
             <div class="customar__field">
               <div class="margin_between">
                 <div class="input_box space_between">
-                  <label>Full name <span>*</span></label>
-                  <input type="text">
+                    <label for="name">
+                        Full Name<span>*</span>
+                      </label>
+                      <input id="name" type="text" formControlName="name" maxlength="25" required>
                 </div>
               </div>
               <div class="input_box">
-                <label>Country<span>*</span></label>
-                <select class="select__option">
+                <label for="country">Country<span>*</span></label>
+                <select class="select__option" id = "country" formControlName="country">
                   <option>Select a country…</option>
                   <option>Afghanistan</option>
                   <option>American Samoa</option>
@@ -27,15 +31,15 @@
                 </select>
               </div>
               <div class="input_box">
-                <label>Address <span>*</span></label>
-                <input type="text" placeholder="Street address">
+                <label for="address">Address <span>*</span></label>
+                <input type="text" placeholder="Street address" formControlName="address" id = "address">
               </div>
               <div class="input_box">
-                <input type="text" placeholder="Apartment, suite, unit etc. (optional)">
+                <input type="text" placeholder="Apartment, suite, unit etc. (optional)" id = "subAddress" formControlName="subAddress">
               </div>
               <div class="input_box">
-                <label>District<span>*</span></label>
-                <select class="select__option">
+                <label for="district">District<span>*</span></label>
+                <select class="select__option" formControlName="district" id = "district">
                   <option>Select a country…</option>
                   <option>Afghanistan</option>
                   <option>American Samoa</option>
@@ -46,25 +50,31 @@
                 </select>
               </div>
               <div class="input_box">
-                <label>Postcode / ZIP <span>*</span></label>
-                <input type="text">
+                <label for="postCode">Postcode / ZIP <span>*</span></label>
+                <input type="number"  id = "postCode" formControlName="postCode">
               </div>
               <div class="margin_between">
                 <div class="input_box space_between">
-                  <label>Phone <span>*</span></label>
-                  <input type="text">
+                  <label for="phone">Phone <span>*</span></label>
+                  <input type="number" id = "phone" formControlName="phone">
                 </div>
 
                 <div class="input_box space_between">
-                  <label>Email address <span>*</span></label>
-                  <input type="email">
-                </div>
+                    <label for="email">Email address <span>*</span></label>
+                    <input type="text" id = "email" formControlName="email">
+                  </div>
               </div>
+
+              <div class="input_box">
+                  <label for="moreInfomation">Note</label>
+                  <input type="text" formControlName="moreInfomation" id = "moreInfomation">
+                </div>
+
             </div>
           </div>
           <div class="customer_details mt--20">
             <div class="differt__address">
-              <button>Add an address</button>
+                <button class="btn btn-success"  [disabled]="!checkoutForm.valid" type="submit">Add an address</button>
             </div>
           </div>
         </div>
@@ -72,3 +82,4 @@
     </div>
   </section>
 </div>
+</form>

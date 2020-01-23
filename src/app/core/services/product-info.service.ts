@@ -7,8 +7,8 @@ import { catchError, map, tap } from 'rxjs/operators';
 })
 export class ProductInfoService<I> {
   private items: Subject<I>;
-  //private url = 'http://localhost:53994/api/WebSiteData';
-  private url = 'http://tiwebsiteapi.azurewebsites.net/api/WebSiteData';
+ // private url = 'http://localhost:53994/api/WebSiteData';
+  private url = 'https://tiwebsiteapi.azurewebsites.net/api/WebSiteData';
   fromItem: number;
   toItem: number;
   totalItems: number;
